@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class='flex'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Football | Customize CSS for Scale</title>
+    <style>
+      :root {
+        --green-light: rgb(108, 230, 108);
+        --green: rgb(19, 187, 19);
+        --line: white;
+        --width-canvas: 500px;
+        --width-line: 5px; /* canvas/100 */
+        --width-d-gap: 25px; /* line*5 */
+        --width-line-outer: 30px; /* line*6 */
+        --radius-outer: 5px; /* line */
+      }
+      * {
+        margin: 0px;
+        background: var(--green-light);
+      }
+			.flex {
+				display: flex;
+        align-items: center;
+        justify-content: center;
+			}
+      body {
+        width: var(--width-canvas);
+        height: var(--width-canvas);
+				box-shadow: 0 0 var(--width-d-gap) var(--line);
+      }
+      .shadow {
+        box-shadow: 0 0 0 var(--radius-outer) var(--line);
+      }
+			.shadow-light {
+        box-shadow: 0 0 0 var(--width-line) var(--line);
+      }
+      .boundary {
+        width: 50%;
+        height: 35%;
+        background: var(--green);
+        border-radius: var(--width-line);
+        overflow: hidden;
+        position: relative;
+        display: grid;
+        align-items: center;
+				grid-template-rows: auto 1fr auto;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .middle-line {
+        height: 100%;
+        width: var(--width-line);
+        background: var(--line);
+        margin: auto;
+				margin-right:48.5%;
+        grid-row: 1/-1;
+        grid-column: 1/-1;
+      }
+      .kick-off {
+        height: 20%;
+        margin-inline: 43%;
+        background: transparent;
+        border-radius: 50%;
+        grid-column: 1/-1;
+        grid-row: 1/-1;
+        position: relative;
+      }
+      .kick-off::after, .kick-off::before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 0 var(--width-line) var(--line);
+      }
+      .kick-off::before {
+        right: 300%;
+      }
+			.kick-off::after {
+				left: 312%;
+			}
+      .d {
+        grid-column: 1/2;
+        grid-row: 1/-1;
+        height: 25%;
+        width: 5%;
+        z-index: 2;
+        background: var(--green);
+        box-shadow: 0 0 0 var(--width-line) var(--line),
+          0 0 0 var(--width-d-gap) var(--green),
+          0 0 0 var(--width-line-outer) var(--line);
+      }
+      .d-right {
+        position: absolute;
+        right: -8%;
+        grid-column: -2/-1;
+      }
+			.corner {
+				width:var(--width-line);
+				height:var(--width-line);
+				background:var(--green);
+				border-radius:50%;
+				z-index: 3;
+			}
+			.left{margin-left:0%; grid-column: 1/2;}
+			.right{right:0%; grid-column: -1/-1;}
+			.top{grid-row: 1/2;}
+			.bottom{grid-row:-2/-1;}
+    </style>
+  </head>
+  <body class='flex'>
+    <div class="boundary shadow">
+      <div class="kick-off shadow"></div>
+      <div class="middle-line"></div>
+      <div class="d shadow"></div>
+      <div class="d d-right shadow"></div>
+			<div class="corner shadow-light top left"></div>
+			<div class="corner shadow-light top right"></div>
+			<div class="corner shadow-light bottom left"></div>
+			<div class="corner shadow-light bottom right"></div>
+    </div>
+  </body>
+</html>
